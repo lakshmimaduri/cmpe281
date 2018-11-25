@@ -17,7 +17,7 @@ Serial# 1234998871109
 
 var gumball_endpoint = "http://dockerhost:8000/goapi/gumball";
 var order_endpoint = "http://dockerhost:8000/goapi/order";
-var apikey = "94ee60f882cb45e582c7c7670dee61c9"
+var apikey = "8294f2f77c16491bbf03ca9df49a0809"
 
 
 // added in v3: handlebars
@@ -31,10 +31,16 @@ var apikey = "94ee60f882cb45e582c7c7670dee61c9"
 var crypto = require('crypto');
 var fs = require('fs');
 var express = require('express');
+var connect = require('connect');
 var Client = require('node-rest-client').Client;
 
 var app = express();
-app.use(express.bodyParser());
+
+//var connect = require('connect');
+app.use(connect.cookieParser()) 
+app.use(express.urlencoded());
+app.use(express.json());
+
 app.use("/images", express.static(__dirname + '/images'));
 handlebars  = require('express3-handlebars');
 hbs = handlebars.create();
